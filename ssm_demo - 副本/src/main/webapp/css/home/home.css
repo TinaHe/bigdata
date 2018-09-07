@@ -1,0 +1,177 @@
+.home {
+	box-sizing: border-box;
+    height: 52px;
+    min-width: 650px;
+    padding: 11px 0 8px;
+    background-color: #ecf0f1;
+    border-bottom:1px solid #e9edee;
+}
+.home .homeMng{
+    float: left;
+}
+.homeMng .logo{
+    width: 162px;
+    float: left;
+}
+.homeMng .logo h1{
+    display: none;
+}
+.homeMng .logo img{
+    width: 150px; 
+    text-align: center;
+    padding-left: 6px;
+}
+.homeMng .line-s{
+    float: left;
+    height: 30px;
+    border: 1px solid #ccc;
+}
+.homeMng .line-s span{
+    width: 0;
+    line-height: 30px;
+}
+.homeMng .header-home{
+    float: left;
+}
+.homeMng .header-home h1{
+    color: #888;
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: bold;
+    margin-left:12px;
+}
+.home-ri{
+	float: right;
+}
+
+.home-ri li{
+    width: 105px;
+    color: #8a8b8b;
+	float: left;
+	cursor: pointer;
+}
+.home-ri li.userName{
+	width:auto;
+    cursor: default;
+}
+#userName{
+	padding:0 10px;
+}
+.home-ri .s-logo img{
+	vertical-align: middle;
+}
+.homeBody{
+    width:100%;
+}
+.homeLeft{
+    width: 162px;
+    background-color: #34495e;
+    padding-top:12px; 
+    position: absolute;
+    top: 51px;
+    left: 0;
+    bottom: 0;
+}
+.homeLeft li{
+    box-sizing: border-box;
+    color: #b3b9bf;
+    padding-left: 33px;
+    height: 50px;
+	line-height: 50px;
+}
+.homeLeft li:hover{
+    color: #b3b9bf;
+    font-weight: bold;
+}
+.homeLeft li span{
+    color:#fff;
+    cursor: pointer;
+}
+.homeLeft .open{
+    background-color: #ecf0f1;
+}
+.homeLeft .open:hover{
+    background-color: #ecf0f1;
+}
+.homeLeft .open span{
+    color: #1abc9c;
+    font-weight: bold;
+}
+.homeLeft .open:hover span{
+    color: #1abc9c;
+    font-weight: bold;
+}
+.homeLeft i{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+	padding-right: 13px;
+	vertical-align: middle;
+}
+.homeLeft .hid{
+	display:none;
+}
+.homeLeft .mainPage{
+    background: url(logo/navLogo_03.png) no-repeat;
+}
+.homeLeft .open .mainPage{
+    background: url(logo/navActive_03.png) no-repeat;
+}
+.homeLeft .workReport{
+    background: url(logo/navLogo_05.png) no-repeat;
+}
+.homeLeft .open .workReport{
+    background: url(logo/navActive_05.png) no-repeat;
+}
+.homeLeft .sessionRecord{
+    background: url(logo/navLogo_07.png) no-repeat;
+}
+.homeLeft .open .sessionRecord{
+    background: url(logo/navActive_07.png) no-repeat;
+}
+.homeLeft .knowdgeManagement{
+    background: url(logo/navLogo_09.png) no-repeat;
+}
+.homeLeft .open .knowdgeManagement{
+    background: url(logo/navActive_09.png) no-repeat;
+}
+.homeLeft .alter{
+    background: url(logo/navLogo_11.png) no-repeat;
+}
+.homeLeft .open .alter{
+    background: url(logo/navActive_11.png) no-repeat;
+}
+.homeLeft .key{
+    background: url(logo/navLogo_13.png) no-repeat;
+}
+.homeLeft .open .key{
+    background: url(logo/navActive_13.png) no-repeat;
+}
+.homeRight{
+    box-sizing: border-box;
+    position: fixed;
+    top: 51px;
+    bottom: 0;
+    right: 0;
+    left: 162px;
+    overflow: hidden;
+    border: 0;
+}
+#submenu{
+    border: 0;
+}
+#loginUserdlg td p{
+    width: 100px;
+    height: 30px;
+    text-align: right;
+    padding-right:10px; 
+}
+#error{
+    box-sizing: border-box;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    padding-left: 15px;
+    background: red;
+    color: #fff;
+}

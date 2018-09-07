@@ -1,0 +1,34 @@
+.index{
+    box-sizing: border-box;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.indexTop{
+	height: 39px;
+	background-color:#ecf0f1;
+}
+.indexTop h3{
+    float: left;
+	width: 100px;
+	color: #888;
+}
+.indexTop .selectList{
+    float: right;
+    margin-right: 200px;
+}
+.index ul{
+	display: flex;
+	margin-left: 100px;
+	padding-top: 100px;
+}
+.index li{
+	width: 25%;
+}
+.indexFex h4{
+	width: 100%;
+	padding-left:65px;
+	font-size: 20px;
+}

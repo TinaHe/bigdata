@@ -1,0 +1,66 @@
+.progress {
+    width: 425px;
+    height: 186px;
+    background: #ecf0f1;
+    z-index:10000;
+    position: absolute;
+    top: 38%;
+    left: 35%;
+}
+
+.barHead{
+    width: 425px;
+    height: 37px;
+    background-color: #1abc9c;
+}
+
+.barHead p {
+    font-size: 16px;
+    line-height: 37px;
+    color: #fff;
+    padding-left: 23px;
+}
+
+.barBody {
+    padding-top: 35px;
+}
+.bar{
+    position: relative;
+    width: 368px;
+    height: 50px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.list {
+    position: absolute;
+    left: 50%;
+    width: 368px;
+    height: 18px;
+    margin-left: -186px;
+    background-color: #fff;
+    overflow: hidden;
+}
+.schedule {
+    position: absolute;
+    top: 0;
+    left: -400px;
+    height: 18px;
+    width: 400px;
+    /* background-color: aqua; */
+    background: url(../../images/common/loading.gif);
+}
+.barNum{
+    position: absolute;
+    top:20px;
+    left: -400px;
+}
+.null {
+    height: 18px;
+    width: 400px;
+    float: left;
+}
+.num{
+    float: left;
+    color: #1abc9c;
+    font-size: 26px;
+}

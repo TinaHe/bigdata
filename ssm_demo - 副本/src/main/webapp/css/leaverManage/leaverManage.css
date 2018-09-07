@@ -1,0 +1,124 @@
+@CHARSET "UTF-8";
+#questionDetails{
+    background-color: #fff;
+    padding-left: 10px;
+}
+.container{
+	position: relative;
+    height: 100%;
+}
+.title{
+    color: #8e969c;
+    font-weight: bold;
+    padding-left: 23px;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid #bdc3c7;
+}
+.leaveCon{
+	padding:10px 28px;
+	
+}
+.hidden{
+	overflow:hidden;
+}
+.caption{
+    margin-right: 10px;
+    font-weight: 600;
+    color: #1abc9c;
+}
+.first{
+	width: 65%;
+}
+.leaveMsg, .userMsg, .recorded{
+	padding:10px 0;
+}
+.leaveMsgCon{
+    line-height: 20px;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    min-height: 80px;
+    max-height: 200px;
+    margin-bottom: 8px;
+}
+.leaveMsgTime{
+	margin-left: 10px;
+}
+.recordTime{
+	width: 28%;
+    float:left;
+    margin-right: 0;
+    line-height: 21px;
+    text-align: center;
+}
+.recordPerson{
+	width: 22%;
+    float:left;
+    margin-right: 0;
+    line-height: 21px;
+    text-align: center;
+}
+.note{
+	width: 50%;
+    float: left;
+    margin-right: 0;
+    line-height: 21px;
+    text-align: center;
+    white-space: normal;
+    word-break: break-all;
+}
+.btnBox{
+	float: right;
+    padding-right: 15px;
+}
+.recorded li{
+    padding: 4px 0;
+    overflow: hidden;
+}
+
+/* 提交弹窗 */
+.promptI{
+    width: 298px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -130px 0 0 -213px;
+    border: 1px solid #ccc;
+}
+.promptHead {
+    height: 27px;
+    line-height: 27px;
+    padding-left: 23px;
+    background: #1abc9c;
+    color: #fff;
+}
+.text {
+    width: 260px;
+    height: 85px;
+    border: 1px solid #ccc;
+    margin: 10px auto;
+}
+#textPromtI {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    padding: 5px;
+    line-height: 15px;
+}
+.dealStatus{
+    overflow: hidden;
+    padding: 0 20px;
+}
+.dealStatus .fl{
+	padding: 0 20px;
+}
+.dealStatus .fl input{
+    vertical-align: sub;
+    width: 30px;
+}
+.sure {
+    text-align: center;
+    padding: 10px;
+}

@@ -1,0 +1,321 @@
+input:-webkit-autofill,input:-webkit-autofill:hover,input:-webkit-autofill:focus,input:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+    -webkit-transition: color 99999s ease-out, background-color 99999s ease-out;
+}
+.conversation{
+    width: 600px;
+    height: 100%;
+    color: #b4b6b6;
+    position: absolute;
+    top: 27px;
+    right: 0;
+    bottom: 0;
+    min-height: 600px;
+}
+.coverHead{
+    width: 100%;
+    height: 39px;
+    background-color: #ecf0f1;
+    border: 1px solid #d3d3d3;
+}
+.coverHead li{
+    padding-top: 1px;
+    float: left;
+}
+.coverHead span{
+    display: inline-block;
+    width: 126px;
+    height: 37px;
+    line-height: 37px;
+    text-align: center;
+}
+.coverHead span:hover{
+    color: #8e969c;
+}
+.coverHead .tabAct span{
+    color: #1abc9c;
+    border-bottom: 1px solid #fff; 
+    background-color: #fff;
+}
+.coverCon{
+    position: relative;
+}
+.conLeft{
+    width: 320px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    padding-top: 19px;
+    background-color: #fff;
+}
+.conLeft p{
+    text-align: center;
+}
+.conLeft .computerSim{
+    padding: 36px 26px 0 37px;
+}
+.conLeft .computerSim div{
+    display: inline-block;
+    /* padding: 0 12px; */
+}
+.conLeft .computerSim p{
+    display: inline-block;
+    text-align: left;
+    padding:0 12px;
+}
+.conLeft .computerSim .asked p{
+    color: #fff;
+}
+.conLeft .computerSim .askedVoice span{
+    color: #fff;
+}
+.conLeft .computerSim .anser p{
+    color: #1abc9c;
+}
+.conLeft .computerSim li{
+    margin-bottom:32px; 
+}
+.conLeft .computerSim .user{
+    position: relative;
+    max-width: 180px;
+    background-color: #1abc9c;
+    border: 1px solid #1abc9c;
+    margin-bottom:14px; 
+    border-radius: 3px;
+}
+.conLeft .computerSim .computer{
+    position: relative;
+    max-width: 180px;
+    border: 1px solid #1abc9c;
+    margin-left:62px; 
+    border-radius: 3px;
+}
+.conLeft .user .fixedLeft{
+    position: absolute;
+    top: 6px;
+    left: -12px;
+    width: 12px;
+    height: 14px;
+    background: url(../../images/common/conte-user.png)
+}
+.conLeft{
+    height: 90%;
+    overflow-y: scroll;
+    overflow-x:hidden; 
+}
+.conLeft .computerSim .fixedRight{
+    position: absolute;
+    bottom: 6px;
+    right: -11px;
+    width: 12px;
+    height: 14px;
+    background: url(../../images/common/conte-com.png)
+}
+.conLeft .computerSim p{
+    padding: 10px 12px;
+    line-height: 15px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.listRight{
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding-left: 346px;
+    color: #b4b6b6;
+    background-color: #ecf0f1;
+}
+.listRight h3{
+    color: #333;
+    padding-top:15px; 
+    line-height: 34px;
+}
+.listRight h3 span{
+    color: #333;
+}
+.listRight .ul{
+	height:85%;
+	overflow-y:scroll;
+}
+.listRight .cover{
+    line-height: 30px;
+    padding-left: 20px;
+    vertical-align: middle;
+    color: #333;
+    font-size: 12px;
+}
+.listRight .cover:hover{
+   font-weight: bold;
+}
+.listRight .active .cover{
+    font-weight: bold;
+    color: #1abc9c;
+}
+.listRight .cover div{
+    float: left;
+}
+/* .listRight .cover .avatar{
+    padding-top: 5px;
+} */
+.listRight .cover .name{
+    padding-left:16px; 
+}
+.listRight .cover .date{
+    padding-left:42px; 
+}
+.similar{
+    width: 608px;
+    height: 100%;
+    overflow: hidden;
+}
+.tips{
+    height: 30px;
+    background-color: #fff9d4;
+}
+.tips p{
+    color: #ffaa35;
+}
+.tips .notes{
+    margin-right: 30px;
+}
+.quesEditor{
+    background-color: #ecf0f1;
+}
+.quesEditor .tips{
+    margin-bottom: 10px;
+}
+.bug{
+    padding-left: 15px;
+    height: 42px;
+    line-height: 42px;
+    background-color: #ecf0f1;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 70px;
+}
+.bug span{
+    padding-right: 23px;
+}
+.bug input{
+    width: 454px;
+    height: 29px;
+    padding-left: 12px;
+    color: #b4b6b6;
+}
+.similar .similarBOdy{
+    position: absolute!important;
+    position: relative;
+    top: 120px!important;
+    top: 0;
+    bottom: 37px;
+    width: 100%;
+    overflow: hidden;
+    height: auto!important;
+    height: 100%;
+    left: -3px;
+    margin-bottom: 5px;
+}
+.similar h5{
+    line-height: 34px;
+    color: #1abc9c;
+}
+.similar .categoryLeft,.similar .similarRight{
+    float: left;
+}
+.similar .categoryLeft{
+    width: 158px;
+    padding: 0 5px;
+    margin-left:12px; 
+}
+.similar .categoryLeft h5{
+    padding-bottom:4px; 
+}
+.similar .similarRight{
+    width: 408px;
+    padding: 0 5px;
+    float:right;
+    border-left:1px solid #8e969c; 
+}
+.similar .similarRight .similarTop{
+    padding: 3px 0;
+    vertical-align: middle;
+}
+.similar .similarRight h5{
+    float: left;
+}
+.similar .similarRight .search{
+    width: 240px;
+    height: 29px;
+    float: right;
+    border: 1px  solid #1abc9c;
+}
+.similar .similarRight .checkbox{
+    height: 74px;
+    padding-left: 40px;
+}
+.similar .similarRight ul{
+    padding: 9px 0;
+}
+.similar .similarRight li{
+    padding: 10px 0 3px;
+}
+.similar .similarRight .pair{
+    background-color: #ecf0f1; 
+}
+.similar .checkbox{
+    width: 70px;
+    padding-top: 20px;
+}
+.similar .content{
+    width: 314px;
+}
+.similar .content p{
+    line-height: 18px;
+}
+.similar .checkbox,.similar .content{
+    float: left;
+}
+.similar .similarBottom{
+    width: 100%;
+    height: 100px;
+    background-color: #fff;
+    padding-top: 5px;
+    border-top:1px solid #b4b6b6; 
+    clear: both;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+.similar .similarBottom .button1{
+    display: block;
+    margin: -13px -20px;
+    color: #fff;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+}
+#catagoruTree{
+    position:absolute;
+    top:47px;
+    bottom:30px;
+    background:#fff;
+}
+.i{
+     width: 100px;
+     max-width:180px;
+     min-height: 26px;
+  }
+.i i{
+     display: inline-block;
+     width:  19px;
+     height: 25px;
+     background:url(../../images/sessionrecord/voice@1x.png);
+     vertical-align: middle;
+     float: right;
+     margin-right: 8px;
+    }
+.i span{
+     padding: 10px;
+ }

@@ -1,0 +1,55 @@
+#questionDetails{
+    background-color: #fff;
+}
+#questionDetails .coverHeader{
+    width: 600px;
+    height: 40px;
+    display: flex;
+}
+#questionDetails .coverHeader .match,#questionDetails .coverHeader .source,#questionDetails .coverHeader .estimate{
+    width: 33.3%;
+    float: left;
+}
+#questionDetails .coverHeader .match {
+    padding-left:20px; 
+    text-align: left;
+}
+#questionDetails .coverHeader .source{
+    text-align: center;
+}
+#questionDetails .coverHeader .estimate{
+    padding-right:30px; 
+    text-align: right;
+}
+#questionDetails .conleft{
+    width: 600px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    bottom: 0;
+    padding-top: 19px;
+}
+.conLeft .computerSim .user{
+    max-width: 360px;
+}
+.conLeft .computerSim .computer{
+    max-width: 360px;
+    word-break: break-all;
+    margin-left:160px; 
+}
+.conLeft .computerSim .queOk{
+    background-color: #f39c12;
+    border: 1px solid #f39c12;
+}
+.conLeft .computerSim .ansOk{
+    border: 1px solid #f39c12;
+}
+.conLeft .computerSim .ansOk p{
+    color: #f39c12;
+}
+.conLeft .queOk .fixedLeft{
+    background: url(../../images/common/conte-userOk.png)
+}
+.conLeft .computerSim .ansOk .fixedRight{
+    background: url(../../images/common/conte-comOk.png)
+}
