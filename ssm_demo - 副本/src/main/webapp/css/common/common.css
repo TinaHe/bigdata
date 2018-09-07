@@ -1,0 +1,410 @@
+.hiddenobj {
+  display:none;
+}
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; font: "微软雅黑";font-size:13px;} 
+body, button, input, select, textarea,pre{ font:12px/1 "Microsoft YaHei", tahoma;color:#8e969c; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; font-weight: normal;}
+textarea{ resize:none;outline: none;border: 0;}
+address, cite, dfn, em, var { font-style:normal; } 
+code,kbd,pre,samp {
+	font-family: "Microsoft YaHei", courier, monospace;
+}
+small{ font-size:12px; } 
+ul, ol { list-style:none; padding: 0;margin: 0;} 
+a { text-decoration:none;} 
+a:hover { text-decoration:none;} 
+sup { vertical-align:text-top; } 
+sub{ vertical-align:text-bottom; } 
+legend { color:#8e969c; } 
+fieldset, img, input, button, select{ border:0; outline: none;} 
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #c7cccf;}
+input:-moz-placeholder, textarea:-moz-placeholder {color: #c7cccf;}
+input::-moz-placeholder, textarea::-moz-placeholder {color: #c7cccf;}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {color: #c7cccf;}
+.pr{position:relative;}
+.fl{float:left}
+.fr{float:right}
+.d_n{display:none;}
+
+	/* 清浮动 */
+.clearfix::after{
+	content:".";
+	display:block;
+	clear:both;
+	overflow:hidden;
+	visibility:hidden;
+	height:0;
+}
+.clearfix{
+	*zoom:1;
+}
+.button ,.button span{
+	color: #fff;
+}
+span, p{
+	color: #8e969c;
+	line-height: 29px;
+}
+.button,.set .button,.button1{
+	box-sizing: border-box;
+	display: inline-block;
+	width: 80px;
+	height: 28px;
+	line-height: 28px;
+	text-align: center;
+	background-color: #1abc9c;
+	cursor: pointer;
+}
+.set .button{
+	margin-right: 10px;
+}
+.openOn{
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	margin-right: 10px;
+	background: url(../../images/common/logo-i3.png) no-repeat;
+}
+.commonWork-g .button:hover{
+	background-color: #16a085;
+}
+.commonWork-o .button{
+	background-color: #f39c12;
+}
+.commonWork-o .button:hover{
+	background-color: #cf850f;
+}
+.commonWork-r .button{
+	background-color: #e74c3c;
+}
+.commonWork-r .button:hover{
+	background-color: #c54133;
+}
+.green{
+	width: 100%;
+	height: 1px;
+	background-color: #1abc9c;
+}
+.ccc{
+	width: 100%;
+	height: 1px;
+	background-color: #bdc3c7;
+}
+.search{
+	width: 177px;
+	height: 29px;
+	border: 1px solid #fff;
+	margin-right: 7px;
+}
+.search:hover{
+	border: 1px solid #1abc9c;
+}
+.search input{
+	width: 150px;
+	height: 29px;
+	color: #c7cccf;
+	line-height: 29px;
+	padding-left: 5px;
+	font-size: 12px;
+}
+.search input#roleName,.search input#userName,.search input#deptName{color: #8e969c}
+.search .fond,.search .fond1{
+	float: right;
+	width: 27px;
+	height: 29px;
+	background-color: #fff;
+}
+.search .fond img,.search .fond1 img{
+	margin: 4px;
+	height: 18px;
+}
+.add span{
+	color: #1abc9c;
+}
+.add i,.off i{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background:url(../../images/common/logo-add.png);
+	vertical-align: middle;
+}
+.off i{
+	background:url(../../images/common/logo-off.png);
+}
+.off span{
+	color: #bdc3c7;
+}
+.del i{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background:url(../../images/common/logo-del.png);
+	vertical-align: middle;
+}
+.del span{
+	color: #bdc3c7;
+}
+.tableHeader{
+	box-sizing: border-box;
+	width: 100%;
+	height:39px;
+	background-color: #ecf0f1;
+}
+.tags{
+	float: left; 
+	padding: 5px 0;
+	cursor: pointer;
+}
+.tags span{
+	color: #8e969c;
+	margin-left:10px; 
+}
+.tags .remind{
+	display: inline-block;
+	width: 20px;
+	height: 18px;
+	background: url(../../images/common/remind.png) no-repeat;
+	vertical-align: middle;
+}
+.prompt{
+	position: absolute;  
+    border: 1px solid #bdc3c7;
+	padding: 8px;
+    left: 79px;
+    top: 31px;
+    background-color:#fff;
+    z-index: 9;
+}
+.prompt p{
+	line-height: 20px;
+	font-size: 12px;
+}
+.keyword{
+	float: right;
+	padding: 5px 0;
+}
+.keyword .date,.keyword .selectList,.keyword .statusList,.keyword .turn2ManList,.keyword .turn22ManList,.keyword .turn3ManList{
+	float: left;
+	margin-right: 10px;
+}
+.keyword span {
+	font-size: 12px;
+	float: left;
+	margin-right: 5px;
+	vertical-align: middle;
+	width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.keyword .selectList,.keyword .statusList,.keyword .turn2ManList,.keyword .turn22ManList,.keyword .turn3ManList{
+	position: relative;
+}
+.keyword .selectList .showUp,.keyword .statusList .showStatus,.keyword .turn2ManList .showTurn2Man,.keyword .turn22ManList .showTurn22Man,.keyword .turn3ManList .showTurn3Man {
+	box-sizing: border-box;
+	width: 113px;
+	height: 30px;
+	line-height: 30px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	padding-left: 13px;
+}
+.slt-icon{
+    padding-right: 20px;
+    background:url("../../images/common/logo-triangle.png") no-repeat;
+    background-position: 92px 11px;
+}
+.exit,{
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+}
+#editCate{
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 216px;
+}
+.blod{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: #1abc9c;
+}
+.wei{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 4px;
+    width: 1px;
+    height: 100%;
+    background-color: #1abc9c;
+}
+.logoExit{
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top:-49px;  
+    width: 13px;
+    height: 98px;
+    background: url(../../images/common/logo-exit.png)
+}
+.keyword .selectList{
+	position: relative;
+}
+.keyword .selectList .showUp:hover,.keyword .statusList .showStatus:hover
+,.keyword .turn2ManList .showTurn2Man:hover,.keyword .turn22ManList .showTurn22Man:hover,.keyword .turn3ManList .showTurn3Man:hover{
+	border: 1px solid #1abc9c;
+}
+.keyword .selectList .chose1,.keyword .statusList .choseStatus,.keyword .turn2ManList .choseTurn2Man,.keyword .turn22ManList .choseTurn22Man,.keyword .turn3ManList .choseTurn3Man{
+	position: absolute;
+	top: 30px;
+	left: 0;
+	width: 113px;
+	border: 1px solid #1abc9c;
+	z-index: 10;
+	background: #fff;
+}
+.keyword .selectList .chose1 p,.keyword .statusList .choseStatus p,.keyword .turn2ManList .choseTurn2Man p,.keyword .turn22ManList .choseTurn22Man p,.keyword .turn3ManList .choseTurn3Man p{
+	padding-left: 13px;
+	line-height: 27px;
+	cursor:default;
+	font-size: 12px;
+}
+.keyword .selectList .chose1 .active,.keyword .statusList .choseStatus .active,.keyword .turn2ManList .choseTurn2Man .active,.keyword .turn22ManList .choseTurn22Man .active,.keyword .turn3ManList .choseTurn3Man .active{
+	color: #fff;
+	background-color: #1abc9c;
+}
+.keyword .search{
+	float: right;
+}
+.keyword .date{
+	position: relative;
+}
+.keyword .date .show{
+	box-sizing: border-box;
+	width: 196px;
+	height: 30px;
+	line-height: 30px;
+	padding-left: 9px;
+	background-color: #fff;
+	border: 1px solid #fff;
+}
+.keyword .date .show p{
+	font-size: 12px;
+}
+.keyword .date .show:hover{
+	border: 1px solid #1abc9c;
+}
+.date-icon{
+	background:url("../../images/common/logo-date.png") no-repeat;
+    background-position-y: 3px;
+	padding-left: 30px;
+}
+.keyword .date .chose{
+	width: 194px;
+	position: absolute;
+	top: 30px;
+	left: 0;
+	z-index: 5;
+	border: 1px solid #16a085;
+}
+.keyword .date .chose p{
+	font-size: 12px;
+	padding-left: 30px;
+	background-color: #fff;
+	line-height: 26px;
+	cursor: default;
+}
+.keyword .date .chose .active{
+	color: #fff;
+	background-color: #16a085;
+}
+.keyword .indate{
+	position: absolute;
+	top: 134px;
+	width: 172px;
+	z-index: 9;
+}
+.keyword .indate .upDate{
+	width: 194px;
+	height: 30px;
+	background-color: #1abc9c;
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	border: 1px  solid #16a085;
+}
+.keyword .indate .upDate input{
+	padding: 8px 5px;
+	width: 100%;
+	font-size: 12px
+}
+.keyword .indate .upDate .line-k{
+	display: inline-block;
+	width: 15px;
+	background-color: #16a085;
+}
+#addAnimate{
+	width: 600px;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 30;
+	background-color: #fff;
+}
+#tabs .tabs-header{
+	background-color: #fff;
+}
+#tabs .tabs-header .tabs{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 30;
+	height: 30px;
+	border-bottom: 1px solid #16a085; 
+	background-color:#fff;
+}
+#tabs .tabs-header .tabs .tabs-inner{
+	width: 88px;
+	border-radius: 0;
+	border: #fff;
+	background: #fff;
+}
+#tabs .tabs-header .tabs .tabs-selected .tabs-inner{
+	border: 1px solid #16a085;
+	border-bottom: 1px solid #fff; 
+}
+#tabs .tabs-header .tabs-selected .tabs-title{
+	color: #1abc9c;
+}
+#tabs .tabs-header .tabs-selected .tabs-title:hover{
+	font-weight: bold;
+}
+.tableHeader,.knowledgeRight{
+	margin-top:30px; 
+}
+#catagoryTree{
+    height: 500px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+#questionDetailsSubPage{
+	height:100%;/* ie兼容 */
+}
+.datagrid-row-selected {
+	color: #1abc9c;
+	background: #fff;
+}
+.iconEdit{
+	cursor: pointer;
+}

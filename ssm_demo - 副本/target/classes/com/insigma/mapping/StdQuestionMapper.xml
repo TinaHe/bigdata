@@ -1,0 +1,632 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.IDao.StdQuestionMapper">
+	<resultMap id="BaseResultMap" type="com.insigma.domain.StdQuestion">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="STD_QUESTION" property="stdQuestion" jdbcType="VARCHAR" />
+		<result column="STD_QUESTION_CODE" property="stdQuestionCode"
+			jdbcType="VARCHAR" />
+		<result column="OUT_ANSWER" property="outAnswer" jdbcType="VARCHAR" />
+		<result column="IN_ANSWER" property="inAnswer" jdbcType="VARCHAR" />
+		<result column="CATEGORY_CODE" property="categoryCode"
+			jdbcType="VARCHAR" />
+		<result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+		<result column="CREATE_USER_CODE" property="createUserCode"
+			jdbcType="VARCHAR" />
+		<result column="UPDATE_USER_CODE" property="updateUserCode"
+			jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="TINYINT" />
+		<result column="VALIDATE" property="validate" jdbcType="DATE" />
+		<result column="KNOWLEDGE_POINT_CODE" property="knowledgePointCode"
+			jdbcType="VARCHAR" />
+		<result column="AUDIT_USER_CODE" property="auditUserCode"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, STD_QUESTION, STD_QUESTION_CODE, OUT_ANSWER, IN_ANSWER,
+		CATEGORY_CODE, CREATE_TIME,
+		UPDATE_TIME, CREATE_USER_CODE, UPDATE_USER_CODE, STATUS, VALIDATE,
+		KNOWLEDGE_POINT_CODE,
+		AUDIT_USER_CODE
+	</sql>
+
+	<!-- *************************以下************************************** -->
+	<!-- 按QId获取分类编号 -->
+	<select id="getCategoryCodeByQId" resultType="java.lang.String"
+		parameterType="java.lang.String">
+		select
+		CATEGORY_CODE
+		from buss_std_question
+		where STD_QUESTION_CODE = #{stdQid}
+		and STATUS != 5
+	</select>
+	<!-- 按照stdCode获取问题详情 -->
+	<select id="selectByCode" parameterType="string" resultType="com.insigma.domain.StdQuestion">
+		select STD_QUESTION as stdQuestion , STD_QUESTION_CODE stdQuestionCode from buss_std_question 
+		<where>
+			<if test="value != null and value != ''">
+				and STD_QUESTION_CODE = #{value,jdbcType=VARCHAR}
+			</if>
+		</where>
+	</select>
+	<!-- 获取相似问题答案统计总数 -->
+	<select id="getTotalOfAlikeAnswer" resultType="Long"
+		parameterType="Map">
+		select count(*)
+		from buss_std_question
+		<where>
+			<if test="stdQuesCodeString!=null">
+				and STD_QUESTION_CODE in (${stdQuesCodeString})
+			</if>
+			<if test="keywords != null and keywords != ''">
+				and STD_QUESTION like '%${keywords}%'
+			</if>
+			and STATUS != 5
+		</where>
+
+	</select>
+
+	<!-- 根据条件获得“我的审核”问题统计 -->
+	<select id="getCheckQuestion" resultType="com.insigma.bean.StdQuestionBean"
+		parameterType="java.util.Map">
+		select stdQ.STD_QUESTION_CODE stdQuestionCode,stdQ.STD_QUESTION
+		stdQuestion,stdQ.UPDATE_TIME updateTime,
+		pUser.USER_NAME updateUserName,stdQ.STATUS status
+		from buss_std_question
+		stdQ,priv_user pUser
+		<where>
+			and stdQ.UPDATE_USER_CODE = pUser.LOGIN_CODE
+			and stdQ.STATUS != 1 and
+			stdQ.STATUS != 4
+			<if test="status != null and status != ''">
+				and stdQ.STATUS = #{status,jdbcType=TINYINT}
+			</if>
+			<if test="keywords != null and keywords != ''">
+				and stdQ.STD_QUESTION like '%${keywords}%'
+			</if>
+			<if
+				test="start_time!=null and end_time!=null and start_time!='' and end_time!=''">
+				and stdQ.UPDATE_TIME &gt;=#{start_time,jdbcType=TIMESTAMP}
+				and stdQ.UPDATE_TIME &lt;=#{end_time,jdbcType=TIMESTAMP}
+			</if>
+			and stdQ.STATUS != 5
+		</where>
+		ORDER BY stdQ.STATUS asc, stdQ.UPDATE_TIME DESC
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<!-- 根据条件获得“我的审核”问题统计总数 -->
+	<select id="getTotalOfCheckQuestion" resultType="Long"
+		parameterType="java.util.Map">
+		select count(*)
+		from buss_std_question stdQ,priv_user pUser
+		<where>
+			and stdQ.UPDATE_USER_CODE = pUser.LOGIN_CODE
+			and stdQ.STATUS != 1 and
+			stdQ.STATUS != 4
+			<if test="status != null and status != ''">
+				and stdQ.STATUS = #{status,jdbcType=TINYINT}
+			</if>
+			<if test="keywords != null and keywords != ''">
+				and stdQ.STD_QUESTION like '%${keywords}%'
+			</if>
+			<if
+				test="start_time!=null and end_time!=null and start_time!='' and end_time!=''">
+				and stdQ.UPDATE_TIME &gt;=#{start_time,jdbcType=TIMESTAMP}
+				and stdQ.UPDATE_TIME &lt;=#{end_time,jdbcType=TIMESTAMP}
+			</if>
+			and stdQ.STATUS != 5
+		</where>
+	</select>
+
+	<!-- 标准问题校验 -->
+	<select id="checkStdQuesContent" resultMap="BaseResultMap"
+		parameterType="Map">
+		select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		<where>
+			<if test="stdQuestion!=null and stdQuestion!='' ">
+				and STD_QUESTION = #{stdQuestion}
+			</if>
+			<if test="stdQuestionCode!=null and stdQuestionCode!='' ">
+				and STD_QUESTION_CODE != #{stdQuestionCode}
+			</if>
+			and CATEGORY_CODE = #{stdCategoryCode}
+			and STATUS != 5
+		</where>
+	</select>
+
+	<!-- *************************以上************************************** -->
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		where ID = #{id,jdbcType=INTEGER}
+		and STATUS != 5
+	</select>
+
+	<select id="selectByCondition" resultMap="BaseResultMap"
+		parameterType="Map">
+		select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		<where>
+			<if test="stdQuestion!=null and stdQuestion!='' ">
+				and (STD_QUESTION like #{stdQuestion}
+				or OUT_ANSWER like #{stdQuestion} )
+			</if>
+			<if test="updateUserCode!=null and updateUserCode!='' ">
+				and UPDATE_USER_CODE = #{updateUserCode}
+			</if>
+			<if test="categoryCode != null and categoryCode !='' ">
+				and CATEGORY_CODE = #{categoryCode}
+			</if>
+			<if test="categoryCodes != null and categoryCodes !='' ">
+				and CATEGORY_CODE in
+				<foreach collection="categoryCodes" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="stdQuestionCode!=null and stdQuestionCode!='' ">
+				and STD_QUESTION_CODE = #{stdQuestionCode}
+			</if>
+			<if test="status!=null and status!='' ">
+				and STATUS = #{status}
+			</if>
+			<if test="startValidate!=null and startValidate!='' ">
+				and (VALIDATE &gt;= #{startValidate,jdbcType=DATE}
+				or VALIDATE = null or VALIDATE = "")
+			</if>
+			<if test="endValidate!=null and endValidate!='' ">
+				and VALIDATE &lt; #{endValidate,jdbcType=DATE}
+			</if>
+			<if test="stdQuesCodeString!=null">
+				and STD_QUESTION_CODE in (${stdQuesCodeString})
+			</if>
+			<if test="keywords != null and keywords != ''">
+				and STD_QUESTION like '%${keywords}%'
+			</if>
+			and STATUS != 5
+			ORDER BY UPDATE_TIME DESC
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+	<select id="getTotal" parameterType="Map" resultType="Long">
+		select count(*) from buss_std_question
+		<where>
+			<if test="stdQuestion!=null and stdQuestion!='' ">
+				and (STD_QUESTION like #{stdQuestion}
+				or OUT_ANSWER like
+				#{stdQuestion} )
+			</if>
+			<if test="updateUserCode!=null and updateUserCode!='' ">
+				and UPDATE_USER_CODE = #{updateUserCode}
+			</if>
+			<if test="categoryCodes != null and categoryCodes !='' ">
+				and CATEGORY_CODE in
+				<foreach collection="categoryCodes" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="categoryCode!=null and categoryCode!='' ">
+				and CATEGORY_CODE = #{categoryCode}
+			</if>
+			<if test="stdQuestionCode!=null and stdQuestionCode!='' ">
+				and STD_QUESTION_CODE = #{stdQuestionCode}
+			</if>
+			<if test="status!=null and status!='' ">
+				and STATUS = #{status}
+			</if>
+			<if test="startValidate!=null and startValidate!='' ">
+				and (VALIDATE &gt;= #{startValidate,jdbcType=DATE}
+				or
+				VALIDATE = null or VALIDATE = "")
+			</if>
+			<if test="endValidate!=null and endValidate!='' ">
+				and VALIDATE &lt; #{endValidate,jdbcType=DATE}
+			</if>
+			and STATUS != 5
+		</where>
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		insert into buss_std_question_his select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		where ID = #{id,jdbcType=INTEGER};
+
+		insert into buss_alike_question_his select
+		ID, ALIKE_QUESTION, STD_QUESTION_CODE, CREATE_TIME, UPDATE_TIME,
+		CREATE_USER_CODE, UPDATE_USER_CODE
+		from buss_alike_question
+		where STD_QUESTION_CODE = (select STD_QUESTION_CODE from buss_std_question
+		where ID = #{id,jdbcType=INTEGER});
+
+		delete from buss_alike_question where STD_QUESTION_CODE = (select
+		STD_QUESTION_CODE from buss_std_question where ID =
+		#{id,jdbcType=INTEGER});
+		delete from buss_std_question where ID = #{id,jdbcType=INTEGER};
+	</delete>
+	<delete id="deleteByCode" parameterType="java.lang.String">
+		insert into buss_std_question_his select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		where STD_QUESTION_CODE = #{code};
+
+		insert into buss_alike_question_his select
+		ID, ALIKE_QUESTION, STD_QUESTION_CODE, CREATE_TIME, UPDATE_TIME,
+		CREATE_USER_CODE, UPDATE_USER_CODE
+		from buss_alike_question
+		where STD_QUESTION_CODE = #{code};
+
+		delete from buss_alike_question where STD_QUESTION_CODE = #{code};
+		delete from buss_std_question where STD_QUESTION_CODE = #{code};
+	</delete>
+
+	<!-- 批量插入 -->
+	<insert id="insertBatch" parameterType="com.insigma.domain.StdQuestion">
+		insert into buss_std_question (ID, STD_QUESTION, STD_QUESTION_CODE,
+		OUT_ANSWER, IN_ANSWER, CATEGORY_CODE,
+		CREATE_TIME, UPDATE_TIME, CREATE_USER_CODE,
+		UPDATE_USER_CODE, STATUS, VALIDATE,
+		KNOWLEDGE_POINT_CODE, AUDIT_USER_CODE
+		)
+		values
+		<foreach collection="list" item="stdQues" index="index"
+			separator=",">
+			(
+			#{stdQues.id,jdbcType=INTEGER}, #{stdQues.stdQuestion,jdbcType=VARCHAR},
+			#{stdQues.stdQuestionCode,jdbcType=VARCHAR},
+			#{stdQues.outAnswer,jdbcType=VARCHAR},
+			#{stdQues.inAnswer,jdbcType=VARCHAR},
+			#{stdQues.categoryCode,jdbcType=VARCHAR},
+			#{stdQues.createTime,jdbcType=TIMESTAMP},
+			#{stdQues.updateTime,jdbcType=TIMESTAMP},
+			#{stdQues.createUserCode,jdbcType=VARCHAR},
+			#{stdQues.updateUserCode,jdbcType=VARCHAR},
+			#{stdQues.status,jdbcType=TINYINT},
+			#{stdQues.validate,jdbcType=DATE},
+			#{stdQues.knowledgePointCode,jdbcType=VARCHAR},
+			#{stdQues.auditUserCode,jdbcType=VARCHAR}
+			)
+		</foreach>
+	</insert>
+
+
+	<insert id="insert" parameterType="com.insigma.domain.StdQuestion">
+		insert into buss_std_question (ID, STD_QUESTION, STD_QUESTION_CODE,
+		OUT_ANSWER, IN_ANSWER, CATEGORY_CODE,
+		CREATE_TIME, UPDATE_TIME, CREATE_USER_CODE,
+		UPDATE_USER_CODE, STATUS, VALIDATE,
+		KNOWLEDGE_POINT_CODE, AUDIT_USER_CODE
+		)
+		values (#{id,jdbcType=INTEGER}, #{stdQuestion,jdbcType=VARCHAR},
+		#{stdQuestionCode,jdbcType=VARCHAR},
+		#{outAnswer,jdbcType=VARCHAR}, #{inAnswer,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+		#{createUserCode,jdbcType=VARCHAR},
+		#{updateUserCode,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
+		#{validate,jdbcType=DATE},
+		#{knowledgePointCode,jdbcType=VARCHAR}, #{auditUserCode,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.insigma.domain.StdQuestion">
+		insert into buss_std_question
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="stdQuestion != null">
+				STD_QUESTION,
+			</if>
+			<if test="stdQuestionCode != null">
+				STD_QUESTION_CODE,
+			</if>
+			<if test="outAnswer != null">
+				OUT_ANSWER,
+			</if>
+			<if test="inAnswer != null">
+				IN_ANSWER,
+			</if>
+			<if test="categoryCode != null">
+				CATEGORY_CODE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="createUserCode != null">
+				CREATE_USER_CODE,
+			</if>
+			<if test="updateUserCode != null">
+				UPDATE_USER_CODE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="validate != null">
+				VALIDATE,
+			</if>
+			<if test="knowledgePointCode != null">
+				KNOWLEDGE_POINT_CODE,
+			</if>
+			<if test="auditUserCode != null">
+				AUDIT_USER_CODE,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="stdQuestion != null">
+				#{stdQuestion,jdbcType=VARCHAR},
+			</if>
+			<if test="stdQuestionCode != null">
+				#{stdQuestionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="outAnswer != null">
+				#{outAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="inAnswer != null">
+				#{inAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryCode != null">
+				#{categoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUserCode != null">
+				#{createUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUserCode != null">
+				#{updateUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=TINYINT},
+			</if>
+			<if test="validate != null">
+				#{validate,jdbcType=DATE},
+			</if>
+			<if test="knowledgePointCode != null">
+				#{knowledgePointCode,jdbcType=VARCHAR},
+			</if>
+			<if test="auditUserCode != null">
+				#{auditUserCode,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.insigma.domain.StdQuestion">
+		update buss_std_question
+		<set>
+			<if test="stdQuestion != null">
+				STD_QUESTION = #{stdQuestion,jdbcType=VARCHAR},
+			</if>
+			<if test="stdQuestionCode != null">
+				STD_QUESTION_CODE = #{stdQuestionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="outAnswer != null">
+				OUT_ANSWER = #{outAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="inAnswer != null">
+				IN_ANSWER = #{inAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryCode != null">
+				CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUserCode != null">
+				CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUserCode != null">
+				UPDATE_USER_CODE = #{updateUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="validate != null">
+				VALIDATE = #{validate,jdbcType=DATE},
+			</if>
+			<if test="knowledgePointCode != null">
+				KNOWLEDGE_POINT_CODE = #{knowledgePointCode,jdbcType=VARCHAR},
+			</if>
+			<if test="auditUserCode != null">
+				AUDIT_USER_CODE = #{auditUserCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByCondition" parameterType="Map">
+		update buss_std_question
+		<set>
+			<if test="categoryCode != null">
+				CATEGORY_CODE = #{categoryCode},
+			</if>
+		</set>
+		where CATEGORY_CODE in
+		<foreach item="codeItem" collection="categoryCodes" open="("
+			separator="," close=")">
+			#{codeItem}
+		</foreach>
+	</update>
+	<update id="updateByCode" parameterType="com.insigma.domain.StdQuestion">
+		update buss_std_question
+		<set>
+			<if test="stdQuestion != null">
+				STD_QUESTION = #{stdQuestion,jdbcType=VARCHAR},
+			</if>
+			<if test="stdQuestionCode != null">
+				STD_QUESTION_CODE = #{stdQuestionCode,jdbcType=VARCHAR},
+			</if>
+			<if test="outAnswer != null">
+				OUT_ANSWER = #{outAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="inAnswer != null">
+				IN_ANSWER = #{inAnswer,jdbcType=VARCHAR},
+			</if>
+			<if test="categoryCode != null">
+				CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUserCode != null">
+				CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="updateUserCode != null">
+				UPDATE_USER_CODE = #{updateUserCode,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=TINYINT},
+			</if>
+			<if test="validate != null">
+				VALIDATE = #{validate,jdbcType=DATE},
+			</if>
+			<if test="knowledgePointCode != null">
+				KNOWLEDGE_POINT_CODE = #{knowledgePointCode,jdbcType=VARCHAR},
+			</if>
+			<if test="auditUserCode != null">
+				AUDIT_USER_CODE = #{auditUserCode,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where STD_QUESTION_CODE = #{stdQuestionCode,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.insigma.domain.StdQuestion">
+		update buss_std_question
+		set STD_QUESTION = #{stdQuestion,jdbcType=VARCHAR},
+		STD_QUESTION_CODE = #{stdQuestionCode,jdbcType=VARCHAR},
+		OUT_ANSWER = #{outAnswer,jdbcType=VARCHAR},
+		IN_ANSWER = #{inAnswer,jdbcType=VARCHAR},
+		CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+		CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+		UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+		CREATE_USER_CODE = #{createUserCode,jdbcType=VARCHAR},
+		UPDATE_USER_CODE = #{updateUserCode,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=TINYINT},
+		VALIDATE = #{validate,jdbcType=DATE},
+		KNOWLEDGE_POINT_CODE = #{knowledgePointCode,jdbcType=VARCHAR},
+		AUDIT_USER_CODE = #{auditUserCode,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 获取标准问题答案，问题分类号和编号 -->
+	<select id="findAlikeQAnswer" resultType="com.insigma.bean.StdQuestionBean"
+		parameterType="Map">
+		select STD_QUESTION_CODE stdQuestionCode,CATEGORY_CODE
+		categoryCode,STD_QUESTION stdQuestion,OUT_ANSWER outAnswer
+		from buss_std_question
+		<where>
+			<if test="categoryCodes != null and categoryCodes !='' ">
+				and CATEGORY_CODE in
+				<foreach collection="categoryCodes" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="status!=null and status!='' ">
+				and STATUS = #{status}
+			</if>
+			<if test="outAnswer != null and outAnswer != ''">
+				and OUT_ANSWER like #{outAnswer}
+			</if>
+		</where>
+		<if test="start!=null and size!=null">
+			limit #{start},#{size}
+		</if>
+	</select>
+
+	<select id="getTotalByAnswer" parameterType="Map" resultType="Long">
+		select count(*) from buss_std_question
+		<where>
+			<if test="categoryCodes != null and categoryCodes !='' ">
+				and CATEGORY_CODE in
+				<foreach collection="categoryCodes" item="item" index="index"
+					open="(" close=")" separator=",">
+					#{item}
+				</foreach>
+			</if>
+			<if test="status!=null and status!='' ">
+				and STATUS = #{status}
+			</if>
+			<if test="outAnswer != null and outAnswer != ''">
+				and OUT_ANSWER like #{outAnswer}
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据选中的问题Id查询问题列表 -->
+	<select id="selectByConditionIds" resultMap="BaseResultMap"
+		parameterType="Map">
+		select
+		<include refid="Base_Column_List" />
+		from buss_std_question
+		<where>
+			<if test="strIds != null">
+				and ID in
+				<foreach collection="strIds" item="item" index="index" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="stdCodes != null">
+			    and STD_QUESTION_CODE in
+			    <foreach collection="stdCodes" item = "item" index ="index"
+			        open="(" separator="," close=")">
+			        #{item}
+			    </foreach>
+			</if>
+			<if test="stdCode != null">
+			    and STD_QUESTION_CODE = #{stdCode}
+			</if>
+			and STATUS != 5
+		</where>
+	</select>
+	
+	<!-- 弃用 -->
+	<select id="flushTrans2Mannual" parameterType="Map" resultMap="BaseResultMap">
+	    select STD_QUESTION,STD_QUESTION_CODE from
+	    buss_std_question
+	    <where>
+			<if test="strIds != null">
+				and ID in
+				<foreach collection="strIds" item="item" index="index" open="("
+					separator="," close=")">
+					#{item}
+				</foreach>
+			</if>
+			<if test="stdCodes != null">
+			    and STD_QUESTION_CODE in
+			    <foreach collection="stdCodes" item = "item" index ="index"
+			        open="(" separator="," close=")">
+			        #{item}
+			    </foreach>
+			</if>
+			<if test="stdCode != null">
+			    and STD_QUESTION_CODE = #{stdCode}
+			</if>
+			and STATUS != 5
+		</where>
+	</select>
+	
+	
+</mapper>

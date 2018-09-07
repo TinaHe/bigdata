@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.insigma.IDao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.insigma.domain.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LOGIN_CODE" property="loginCode" jdbcType="VARCHAR" />
+    <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="USER_CODE" property="userCode" jdbcType="VARCHAR" />
+    <result column="VALIDATE" property="validate" jdbcType="DATE" />
+    <result column="IS_ONLINE" property="isOnline" jdbcType="TINYINT" />
+    <result column="NOTE" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, LOGIN_CODE, LOGIN_NAME, PASSWORD, USER_CODE, VALIDATE, IS_ONLINE, NOTE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from priv_user
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from priv_user
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.insigma.domain.User" >
+    insert into priv_user (ID, LOGIN_CODE, LOGIN_NAME, 
+      PASSWORD, USER_CODE, VALIDATE, 
+      IS_ONLINE, NOTE)
+    values (#{id,jdbcType=INTEGER}, #{loginCode,jdbcType=VARCHAR}, #{loginName,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{userCode,jdbcType=VARCHAR}, #{validate,jdbcType=DATE}, 
+      #{isOnline,jdbcType=TINYINT}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.insigma.domain.User" >
+    insert into priv_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="loginCode != null" >
+        LOGIN_CODE,
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME,
+      </if>
+      <if test="password != null" >
+        PASSWORD,
+      </if>
+      <if test="userCode != null" >
+        USER_CODE,
+      </if>
+      <if test="validate != null" >
+        VALIDATE,
+      </if>
+      <if test="isOnline != null" >
+        IS_ONLINE,
+      </if>
+      <if test="note != null" >
+        NOTE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginCode != null" >
+        #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validate != null" >
+        #{validate,jdbcType=DATE},
+      </if>
+      <if test="isOnline != null" >
+        #{isOnline,jdbcType=TINYINT},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.insigma.domain.User" >
+    update priv_user
+    <set >
+      <if test="loginCode != null" >
+        LOGIN_CODE = #{loginCode,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null" >
+        LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="userCode != null" >
+        USER_CODE = #{userCode,jdbcType=VARCHAR},
+      </if>
+      <if test="validate != null" >
+        VALIDATE = #{validate,jdbcType=DATE},
+      </if>
+      <if test="isOnline != null" >
+        IS_ONLINE = #{isOnline,jdbcType=TINYINT},
+      </if>
+      <if test="note != null" >
+        NOTE = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.insigma.domain.User" >
+    update priv_user
+    set LOGIN_CODE = #{loginCode,jdbcType=VARCHAR},
+      LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      USER_CODE = #{userCode,jdbcType=VARCHAR},
+      VALIDATE = #{validate,jdbcType=DATE},
+      IS_ONLINE = #{isOnline,jdbcType=TINYINT},
+      NOTE = #{note,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

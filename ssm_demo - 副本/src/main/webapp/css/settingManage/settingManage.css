@@ -1,0 +1,193 @@
+@CHARSET "UTF-8";
+.content .panel{
+        margin: 50px 20px 0 30px;
+    }
+    .content .panel-title{
+        font-size:15px;
+        color:black;
+        background: #fff;
+    	font-weight: normal;
+    	display: inline-block;
+   		padding-right: 18px;
+    }
+    .content .panel-header{
+    	width: 1729px;
+    	height: 18px;
+    	position: relative;
+    	border: 0;
+	    border-bottom: 1px solid #ccc;
+	    padding-left: 0;
+	    box-sizing: border-box;
+	    background: none;
+	    
+    }
+    .content .panel-body{
+    	border: 0;
+    }
+    .content .textbox .textbox-text{
+    	color:#000;
+    }
+    .formWrap{
+    	display: inline-block;
+    	/* width: 70%; */
+    }
+    .btnWrap{
+    	width: 60%;
+	    text-align: center;
+	    margin-top: 60px;
+    }
+    .formWrap tr{
+   	    line-height: 70px;
+    }
+    .labelTitle{
+    	font-size: 15px;
+    	text-align: right;
+    	width: 200px;
+    	padding-right: 20px;
+    }
+    .labelTitle p{
+    	width: 200px;
+    	color: #344952;
+    }
+    .wrap{
+    	padding:40px 10px 20px 128px;
+    	overflow: hidden;
+    }
+    .addMore{
+    	line-height: 30px;
+    	padding-left: 30px;
+    	margin-bottom: 10px;
+    	color: #49c3a9;
+    	cursor: pointer;
+   	    background: url(../../images/common/logo-add.png) no-repeat;
+   	    background-position: left;
+    }
+    .matter .addQuestions {
+	    max-height: 117px;
+	    overflow-x: hidden;
+	    overflow-y: auto;
+	}
+	.sameQuestion{
+		overflow: hidden;
+		padding:5px 0;
+	}
+	.addQuestions input {
+		float:left;
+	    width: 452px;
+	    height: 26px;
+	    color: #8e969c;
+	    border: 1px solid #ddd;
+	    padding-left: 10px;
+	}
+	.addQuestions .btn {
+		float:left;
+	    width: 29px;
+	    height: 29px;
+	    font-size: 18px;
+	    line-height: 22px;
+	    text-align: center;
+	    color: #fff;
+	    cursor: pointer;
+	    background: url(../../images/common/logo-del2.png) no-repeat;
+	}
+	.container{
+		max-height: 225px;
+	    overflow-y: auto;
+	    width: 660px;
+	}
+	.container li{
+		margin-bottom: 12px;
+		position: relative;
+		line-height: normal;
+	}
+	.container span{
+		display:inline-block;
+		padding: 2px 6px;
+	}
+	.container .stdQuestion{
+	    background: #ecf0f1;
+	    width: 600px;
+	    cursor: pointer;
+	}
+	.pop{
+		position: absolute;
+	    left: 50%;
+	    width: 1000px;
+	    height: 600px;
+	    margin-left: -500px;
+		background: #ecf0f1;
+		border: 1px solid #ccc;
+	}
+	#connet{
+	    width: 100%;
+	    height: 100%;
+	    border: 0;
+	}
+	#upButton{
+	    text-align: right;
+    	cursor: pointer;
+	}
+	
+	/* 图片裁剪 */
+	.crop_image{
+		position: absolute;
+	    left: 46%;
+	    top: 150px;
+	    width: 790px;
+	    margin-left: -500px;
+		background: #ecf0f1;
+		border: 1px solid #ccc;
+	    z-index: 99;
+	}
+	.crop_image_top{
+	    overflow: hidden;
+	    background: #1abc9c;
+	    line-height: 27px;
+	    color: #fff;
+	}
+	.crop_image_title{
+		font-weight: 600;
+    	padding-left: 15px;
+	}
+	.close{
+		width: 16px;
+	    height: 16px;
+	    padding: 5px 18px;
+	    cursor: pointer;
+	    background: url(../../css/easyui/themes/gray/images/del.png) no-repeat;
+	    background-position: center;
+	}
+	.crop_image_content{
+		min-height: 518px;
+		box-sizing: border-box;
+		padding: 30px;
+		display: flex;
+		justify-content: space-around;
+	}
+	.crop_image_right{
+		margin-left: 30px;
+	}
+	.sure{
+		display: inline-block;
+		padding: 6px 25px;
+		margin: 25px 55px;
+		background: #1abc9c;
+		color: #fff;
+	}
+	.original{
+		background: #fff;
+	}
+	.original img{
+		/* width: 459px; */
+		max-height: 486px;
+		max-width: 486px;
+	}
+	#imgFile{
+		display: none;
+	}
+	.operate span{
+		padding: 4px 10px;
+		background: #44abd5;
+		color: #fff;
+	}
+	

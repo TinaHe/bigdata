@@ -1,0 +1,134 @@
+ .problem{
+    width: 600px;
+    height: 94%;
+    position: relative;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    top:0;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    background-color: #fff;
+}
+.proHeader{
+    position: relative;
+}
+.proHeader .rejectExplanation{
+    position: absolute;
+    top: 0;
+    left: 90px;
+    display:block;
+    width: 550px;
+    height: 50px;
+    color: #e74c3c;
+    line-height: 28px;
+}
+.proHeader .btn button{
+    display: inline-block;
+    width: 56px;
+    height: 21px;
+    color: #fff;
+    border: 0;
+    margin-right:7px;
+}
+.proHeader .btn .button{
+	cursor: inherit; 
+}
+.proHeader .btn .G{
+    background-color: #1abc9c;
+}
+.proHeader .btn .R{
+    background-color: #e74c3c;
+} 
+.proHeader .btn .O{
+    background-color: #f39c12;
+}
+.proHeader .btn .C{
+    background-color: #ccc;
+}
+#rejectExplanation{
+	color: #e74c3c;
+}
+.proHeader h3{
+    font-size: 12px;
+    color: #909090;
+    padding: 13px 0 7px;
+}
+.proContent{
+    padding-bottom:27px; 
+}
+.tagH4{
+    display: inline-block;
+    padding-top:21px; 
+}
+.tagH4 h4{
+    font-size: 12px;
+    color: #fff;
+    padding: 5px 10px 7px 12px;
+    background-color: #1abc9c;
+}
+.proContent pre{
+    padding:12px 0 0 13px;
+    font-size: 12px;
+    line-height: 15px;
+    white-space: pre-wrap; /*css-3*/ 
+    white-space: -moz-pre-wrap; /*Mozilla,since1999*/ 
+    white-space: -pre-wrap; /*Opera4-6*/ 
+    white-space: -o-pre-wrap; /*Opera7*/ 
+    word-wrap: break-word; /*InternetExplorer5.5+*/
+    color: #909090;
+}
+.proContent pre img{
+	max-width: 90%;
+}
+.proContent .con ul, .proContent .relQuestions ul{
+    padding-top:10px; 
+}
+.proContent .con li, .proContent .relQuestions li{
+    padding-left: 13px;
+}
+.proContent .con span, .proContent .relQuestions span{
+    color: #1abc9c;
+}
+.proContent .con p, .proContent .relQuestions p{
+    display: inline-block;
+    line-height: 20px;
+    padding: 0;
+}
+.cover .show{
+    padding:13px 0 38px 13px; 
+}
+.cover .show span{
+    color: #909090;
+}
+.cover .show .last{
+    color: #1abc9c;
+}
+.person .updata,.person .check{
+    padding-top:20px; 
+}
+.person .left{
+    display: inline-block;
+    width: 64px;
+    line-height: 15px;
+    text-align: right;
+    color: #1abc9c;
+}
+.person .right{
+    color: #909090;
+}
+.btnBottom{
+    width: 266px;
+    padding-top:20px; 
+    margin: 0 auto;
+}
+.btnBottom button{
+    margin-right: 32px;
+    color: #fff;
+}
+.btnBottom .checkQuestion{
+    background-color: #f39c12;
+}
+.btnBottom .rejectQuestion{
+    background-color: #e74c3c;
+}
