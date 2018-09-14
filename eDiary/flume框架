@@ -1,0 +1,12 @@
+flume.apache.org
+Flume(分布式，可靠的，可用的)
+	collecting,aggregating,moving(仅仅支持linux)
+	Cloudera 开发的框架
+实时的收集数据
+
+
+
+apache/nginx
+
+
+kafka / flume + storm/spark streaming

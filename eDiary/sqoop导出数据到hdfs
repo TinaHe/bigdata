@@ -1,0 +1,144 @@
+=================导出数据到RDBMS
+hive table
+* table
+	hiveserver2进行jdbc方式查询数据
+* hdfs file
+	export -> mysql /oracle/db2/
+
+图片
+
+
+>>>>>>>>>>>>>>>>>export mysql table >>>>>>>>>>>>>>>
+touch /opt/datas/user.txt			默认 , 分隔符
+vim /opt/datas/user.txt
+	8,beifeng,beifeng
+	9,tina,tina
+
+bin/hdfs dfs -mkdir -p /user/tina/sqoop/exp/user/
+bin/hdfs dfs -put /opt/datas/user.txt /user/tina/sqoop/exp/user/
+
+bin/sqoop export \
+--connect jdbc:mysql://hadoop-senior.ibeifeng.com:3306/test \
+--username root \
+--password 123456 \
+--table my_user \
+--export-dir /user/tina/sqoop/exp/user/ \
+--num-mappers 1
+
+图片成了！！！
+
+
+
+====================HIVE 数据导入导出========================
+import：
+
+Hive arguments:
+   --create-hive-table                         Fail if the target hive
+                                               table exists
+   --hive-database <database-name>             Sets the database name to
+                                               use when importing to hive
+   --hive-delims-replacement <arg>             Replace Hive record \0x01
+                                               and row delimiters (\n\r)
+                                               from imported string fields
+                                               with user-defined string
+   --hive-drop-import-delims                   Drop Hive record \0x01 and
+                                               row delimiters (\n\r) from
+                                               imported string fields
+   --hive-home <dir>                           Override $HIVE_HOME
+   --hive-import                               Import tables into Hive
+                                               (Uses Hive's default
+                                               delimiters if none are
+                                               set.)
+   --hive-overwrite                            Overwrite existing data in
+                                               the Hive table
+   --hive-partition-key <partition-key>        Sets the partition key to
+                                               use when importing to hive
+   --hive-partition-value <partition-value>    Sets the partition value to
+                                               use when importing to hive
+   --hive-table <table-name>                   Sets the table name to use
+                                               when importing to hive
+   --map-column-hive <arg>                     Override mapping for
+                                               specific column to hive
+                                               types.
+
+
+Hive数据存储在hdfs上
+	schema
+	table location / file
+
+
+>>>>>>>>>>>>>>>>>import hive table
+[root@hadoop-senior datas]# vim imp-hive-user.sql
+[root@hadoop-senior datas]# pwd
+/opt/datas/imp-hive-user.sql   (以下的脚本sql)
+
+
+use default;
+drop table if exists user_hive;
+create table user_hive (
+id int,
+account string,
+password string
+)
+row format delimited fields terminated by '\t';
+
+bin/hive -f /opt/datas/imp-hive-user.sql    （即可替代上面）
+
+
+bin/sqoop import \
+--connect jdbc:mysql://hadoop-senior.ibeifeng.com:3306/test \
+--username root \
+--password 123456 \
+--table my_user \
+--fields-terminated-by '\t' \
+--delete-target-dir \
+--num-mappers 1 \
+--hive-import \
+--hive-database default \
+--hive-table user_hive
+默认到/user/root/
+
+
+
+>>>>>>>>>>>>>>>>>export mysql table
+
+
+DROP TABLE IF EXISTS `my_user2`;
+CREATE TABLE `my_user2` (
+  `ID` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `ACCOUNT` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  `PASSWD` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+)
+
+
+bin/sqoop export \
+--connect jdbc:mysql://hadoop-senior.ibeifeng.com:3306/test \
+--username root \
+--password 123456 \
+--table my_user2 \
+--export-dir /user/hive/warehouse/user_hive \
+--num-mappers 1 \
+--input-fields-terminated-by '\t'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
