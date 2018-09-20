@@ -1,0 +1,17 @@
+oozie.apache.org
+
+一个oozie job 是一个MapReduce程序，仅仅只有map task的程序
+
+针对不同类型的任务，编写不同的workflow，模板
+
+=============oozie安装部署
+http://archive.cloudera.com/cdh5/cdh/5/oozie-4.0.0-cdh5.3.6/DG_QuickStart.html
+官方文档：
+根据官方文档进行安装部署
+.
+
+bin/oozie-setup.sh prepare-war
+bin/oozie-setup.sh sharelib create -fs hdfs://hadoop-senior.ibeifeng.com:8020 -locallib oozie-sharelib-4.0.0-cdh5.3.6-yarn.tar.gz
+bin/oozie-setup.sh db create -run
+
+bin/ooziedb.sh create -sqlfile oozie.sql -run DB Connection
